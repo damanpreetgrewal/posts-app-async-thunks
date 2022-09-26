@@ -1,20 +1,23 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { sub } from 'date-fns';
 
 const initialState = [
   {
-    id: "1",
-    title: "Learning Redux Toolkit",
+    id: '1',
+    title: 'Learning Redux Toolkit',
     content: "I've heard good things.",
+    date: sub(new Date(), { minutes: 10 }).toISOString(),
   },
   {
-    id: "2",
-    title: "Slices...",
-    content: "The more I say slice, the more I want pizza.",
+    id: '2',
+    title: 'Slices...',
+    content: 'The more I say slice, the more I want pizza.',
+    date: sub(new Date(), { minutes: 20 }).toISOString(),
   },
 ];
 
 const postsSlice = createSlice({
-  name: "posts",
+  name: 'posts',
   initialState,
   reducers: {
     postAdded: {
@@ -27,6 +30,7 @@ const postsSlice = createSlice({
             id: nanoid(),
             title,
             content,
+            date: new Date().toISOString(),
             userId,
           },
         };
@@ -35,7 +39,7 @@ const postsSlice = createSlice({
   },
 });
 
-export const selectAllPosts = (state) => state.posts;
+export const selectAllPosts = state => state.posts;
 
 export const { postAdded } = postsSlice.actions;
 
