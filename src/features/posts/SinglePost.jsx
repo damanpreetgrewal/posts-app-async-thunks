@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectPostById } from './postsSlice';
 import { Link } from 'react-router-dom';
+import ReactionButtons from './ReactionButtons';
 
 import PostAuthor from './PostAuthor';
 import TimeAgo from './TimeAgo';
@@ -27,6 +28,7 @@ const SinglePost = () => {
         <PostAuthor userId={post.user} />
         <TimeAgo timestamp={post.date} />
       </p>
+      <ReactionButtons post={post} />
     </article>
   );
 };
